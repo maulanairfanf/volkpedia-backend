@@ -12,8 +12,10 @@ module.exports =  {
   },
 
   getAllProduct: async(req, res) => {
+    let limit = 10
+    if (req.params.limit) limit = req.params.limit.split("=")[1]
     try {
-      const products = await Product.find().sort({ createdAt: -1 })
+      const products = await Product.find().sort({ createdAt: -1 }).limit(limit)
       res.status(200).json(products)
     } catch (error) {
       res.status(500).json("failed to get the products")

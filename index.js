@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const productRouter = require('./routes/products')
+const userRouter = require('./routes/users')
 const port = 3000;
 const cors = require('cors') 
 const app = express()
@@ -23,6 +24,7 @@ app.use((_req, res, next) => {
 });
 
 app.use('/api/products', productRouter)
+app.use('/api/users', userRouter)
+
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT}!`))
 
-// app.get('/', (req, res) => res.send("Hello World!"))

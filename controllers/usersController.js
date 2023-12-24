@@ -99,11 +99,14 @@ const getUser = asyncHandler(async (req, res, next) => {
       res.status(404)
       throw new Error("User not found.");
     }
-
     res
       .status(200)
       .setHeader('Content-Type', 'application/json')
-      .json(result)
+      .json({
+        _id: result._id,
+        fullName: result.fullName,
+        email: result.email,
+      })
   } catch (err) {
     throw new Error(`Error retrieving user: ${err.message}`)
   }

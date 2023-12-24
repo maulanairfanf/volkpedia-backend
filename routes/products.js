@@ -1,11 +1,12 @@
 const router = require('express').Router();
 const productController = require('../controllers/productsControllers')
+const { isLoggedIn } = require("../controllers/middleware"); // import isLoggedIn custom middleware
 
-router.get('/:limit?', productController.getAllProduct)
-router.get('/:id', productController.getProduct)
-router.get('/search/:key', productController.searchProduct)
-router.post('/', productController.createProduct)
-router.delete('/:id', productController.deleteProduct)
-router.put('/:id', productController.updateProduct)
+router.get('/:limit?', isLoggedIn, productController.getAllProduct)
+router.get('/:id', isLoggedIn, productController.getProduct)
+router.get('/search/:key', isLoggedIn, productController.searchProduct)
+router.post('/', isLoggedIn, productController.createProduct)
+router.delete('/:id', isLoggedIn, productController.deleteProduct)
+router.put('/:id', isLoggedIn, productController.updateProduct)
 
 module.exports = router

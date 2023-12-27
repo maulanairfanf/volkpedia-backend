@@ -3,6 +3,7 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const productRouter = require('./routes/products')
 const userRouter = require('./routes/users')
+const cartRouter = require('./routes/cart')
 const port = 3000;
 const cors = require('cors') 
 const app = express()
@@ -26,6 +27,8 @@ app.use((_req, res, next) => {
 
 app.use('/api/products', productRouter)
 app.use('/api/users', userRouter)
+app.use('/api/cart', cartRouter)
+
 app.use(createContext)
 
 app.listen(process.env.PORT || port, () => console.log(`Example app listening on port ${process.env.PORT}!`))

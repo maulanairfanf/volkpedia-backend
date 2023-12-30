@@ -4,19 +4,18 @@ const ObjectID = mongoose.Schema.Types.ObjectId
 const CartSchema = new mongoose.Schema({
   user: { type: ObjectID, required: true, ref: 'User' },
   products: [{
-    productId: {
+    product: {
       type: ObjectID,
       ref: 'Product',
       required: true
     },
-    name: String,
     quantity: {
       type: Number,
       required: true,
       min: 1,
       default: 1
     },
-    price: Number
+    // totalPrice: Number
   }],
 
 }, { timestamps: true })

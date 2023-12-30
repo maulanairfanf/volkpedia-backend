@@ -3,11 +3,12 @@ const Product = require('../models/Products')
 
 module.exports =  {
   getCart: async(req, res) => {
+    // Product.findById(req.params.id)
     const user = req.params.id;
-    console.log('user', user)
     try {
-      const cart = await Cart.findOne({user});
-      console.log('cart', cart)
+      const cart = await Cart.findOne({user}).
+      populate({path: 'Product', select: '_id name'})
+      console.log('cart', cart.products)
       if (cart && cart.products.length > 0) {
         res.status(200).send(cart);
       } else {
@@ -30,29 +31,30 @@ module.exports =  {
         res.status(404).send({ message: "item not found" });
         return;
       }
-      const price = product.price;
-      const name = product.name;
+      // const price = product.price;
+      // const name = product.name;
+
       //If cart already exists for user,
       if (cart) {
-        const productIndex = cart.products.findIndex((item) => item.productId == productId);
+        const productIndex = cart.products.findIndex((item) => item.product == product);
         //check if product exists or not
 
         if (productIndex > -1) {
           let product = cart.products[productIndex];
           product.quantity += quantity;
 
-          cart.bill = cart.products.reduce((acc, curr) => {
-              return acc + curr.quantity * curr.price;
-          },0)
+          // cart.totalPrice = cart.products.reduce((acc, curr) => {
+          //     return acc + curr.quantity * curr.price;
+          // },0)
           
           cart.products[productIndex] = product;
           await cart.save();
           res.status(200).send(cart);
         } else {
-          cart.products.push({ productId, name, quantity, price });
-          cart.bill = cart.products.reduce((acc, curr) => {
-              return acc + curr.quantity * curr.price;
-          },0)
+          cart.products.push({ product, quantity });
+          // cart.totalPrice = cart.products.reduce((acc, curr) => {
+          //     return acc + curr.quantity * curr.price;
+          // },0)
 
           await cart.save();
           res.status(200).send(cart);
@@ -61,8 +63,8 @@ module.exports =  {
         //no cart exists, create one
         const newCart = await Cart.create({
           user,
-          products: [{ productId, name, quantity, price }],
-          bill: quantity * price,
+          products: [{ product, quantity }],
+          // totalPrice: quantity * price,
         });
         return res.status(201).send(newCart);
       }
@@ -71,6 +73,19 @@ module.exports =  {
       res.status(500).send("something went wrong");
     }
   },
+
+  deleteCart: async(req, res) => {
+  try {
+      await Cart.deleteMany({});
+      res.status(200).json({
+        success: true,
+        msg: 'All cart were deleted'
+      });
+    } catch (err) {
+      throw new Error(`Error deleting cart: ${err.message}`);
+    }
+  },
+
 
   
 }

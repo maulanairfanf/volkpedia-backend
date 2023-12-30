@@ -4,6 +4,7 @@ const { isLoggedIn } = require("../controllers/middleware"); // import isLoggedI
 
 router.get('/:id', isLoggedIn, cartController.getCart)
 router.post('/:id', isLoggedIn, cartController.addCart)
+router.delete('/', isLoggedIn, cartController.deleteCart)
 
 
 module.exports = router

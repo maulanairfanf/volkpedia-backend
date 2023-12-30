@@ -23,7 +23,6 @@ module.exports =  {
   },
 
   getProduct: async(req, res) => {
-    console.log('sini')
     try {
       const product = await Product.findById(req.params.id)
       res.status(200).json(product)

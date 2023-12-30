@@ -22,7 +22,6 @@ const authenticateUser = async (req, res, next) => {
       email: payload.email,
       role: payload.role,
       name: payload.name,
-      organizer: payload.organizer,
       id: payload.userId,
     };
 
@@ -32,7 +31,7 @@ const authenticateUser = async (req, res, next) => {
   }
 };
 
-const authenticateParticipant = async (req, res, next) => {
+const authenticateCustomer = async (req, res, next) => {
   try {
     let token;
     // check header
@@ -49,11 +48,11 @@ const authenticateParticipant = async (req, res, next) => {
     const payload = isTokenValid({ token });
 
     // Attach the user and his permissions to the req object
-    req.participant = {
+    req.customer = {
       email: payload.email,
       lastName: payload.lastName,
       firstName: payload.firstName,
-      id: payload.participantId,
+      id: payload.customerId,
     };
 
     next();
@@ -71,4 +70,4 @@ const authorizeRoles = (...roles) => {
   };
 };
 
-module.exports = { authenticateUser, authorizeRoles, authenticateParticipant };
+module.exports = { authenticateUser, authorizeRoles, authenticateCustomer };

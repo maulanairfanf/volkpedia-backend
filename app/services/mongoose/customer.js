@@ -94,6 +94,14 @@ const signinCustomer = async (req) => {
   return token;
 };
 
+const getProfileCustomer = async (req) => {
+  const result = await Customer.findOne({ _id: req.customer.id })
+  delete result._doc.password;
+  delete result._doc.otp;
+
+  return result
+}
+
 // const getAllEvents = async (req) => {
 //   const result = await Events.find({ statusEvent: 'Published' })
 //     .populate('category')
@@ -203,6 +211,7 @@ module.exports = {
   signupCustomer,
   activateCustomer,
   signinCustomer,
+  getProfileCustomer
   // getAllEvents,
   // getOneEvent,
   // getAllOrders,

@@ -7,6 +7,7 @@ const {
   getAllOrders,
   checkoutOrder,
   getAllPaymentByOrganizer,
+  getProfileCustomer
 } = require('../../../services/mongoose/customer');
 
 const { StatusCodes } = require('http-status-codes');
@@ -46,6 +47,20 @@ const signin = async (req, res, next) => {
     next(err);
   }
 };
+
+const getProfile = async (req, res, next) => {
+  try {
+    const result = await getProfileCustomer(req);
+
+    res.status(StatusCodes.OK).json({
+      data: { data: result },
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+
 
 const getAllLandingPage = async (req, res, next) => {
   try {
@@ -111,9 +126,10 @@ module.exports = {
   signup,
   activeCustomer,
   signin,
-  getAllLandingPage,
-  getDetailLandingPage,
-  getDashboard,
-  checkout,
-  getAllPayment,
+  getProfile
+  // getAllLandingPage,
+  // getDetailLandingPage,
+  // getDashboard,
+  // checkout,
+  // getAllPayment,
 };

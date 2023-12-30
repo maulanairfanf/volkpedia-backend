@@ -10,6 +10,7 @@ const app = express();
 
 const authCMSRouter = require('./app/api/v1/auth/router');
 const customerRouter = require('./app/api/v1/customer/router');
+const poructRouter = require('./app/api/v1/product/router');
 
 
 const v1 = '/api/v1';
@@ -32,6 +33,7 @@ app.get('/', (req, res) => {
 
 app.use(`${v1}/cms`, authCMSRouter);
 app.use(`${v1}`, customerRouter);
+app.use(`${v1}`, poructRouter);
 
 
 

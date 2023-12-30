@@ -14,7 +14,6 @@ const transporter = nodemailer.createTransport({
 });
 
 const otpMail = async (email, data) => {
-  console.log('data', data)
   try {
     let template = fs.readFileSync('app/views/email/otp.html', 'utf8');
 

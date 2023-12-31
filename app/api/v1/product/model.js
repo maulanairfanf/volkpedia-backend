@@ -20,6 +20,14 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: 0,
     },
+    image: {
+      type: String,
+      default: ''
+    },
+    location: {
+      type: String,
+      enum: ["Jakarta", "Bandung", "Lampung"]
+    }
   },
   { timestamps: true }
 );

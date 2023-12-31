@@ -1,7 +1,4 @@
 const Customer = require('../../api/v1/customer/model');
-// const Events = require('../../api/v1/events/model');
-// const Orders = require('../../api/v1/orders/model');
-// const Payments = require('../../api/v1/payments/model');
 
 const {
   BadRequestError,

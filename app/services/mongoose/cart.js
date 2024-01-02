@@ -42,14 +42,14 @@ const createCart = async (req) => {
       let temp = cart.products[productIndex];
       temp.quantity += quantity;
       cart.bill = cart.products.reduce((acc, curr) => {
-        return acc + curr.quantity * price;
+        return acc + curr.quantity * curr.price;
       },0)
       cart.products[productIndex] = temp;
       await cart.save();
     } else {
       cart.products.push({ productId, quantity, price });
       cart.bill = cart.products.reduce((acc, curr) => {
-      return acc + curr.quantity * price;
+      return acc + curr.quantity * curr.price;
       },0)
       await cart.save();
     }

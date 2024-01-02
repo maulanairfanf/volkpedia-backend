@@ -3,7 +3,9 @@ const {
   createCart,
   deleteCart,
   updateCart,
-  deleteAllCart
+  deleteAllCart,
+  deleteOneByUser,
+  deleteProductCart
 } = require('../../../services/mongoose/cart');
 
 const { StatusCodes } = require('http-status-codes');
@@ -69,9 +71,36 @@ const deleteAll = async (req, res, next) => {
   }
 };
 
+const deleteUserCart = async (req, res, next) => {
+  try {
+    const result = await deleteOneByUser(req);
+
+    res.status(StatusCodes.OK).json({
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const deleteProductCartUser = async (req, res, next) => {
+  try {
+    const result = await deleteProductCart(req);
+
+    res.status(StatusCodes.OK).json({
+      data: result,
+    })
+  } catch (error) {
+    console.log('error', error)
+    next(err)
+  }
+}
+
 module.exports = {
   index,
   create,
   deleteOne,
-  deleteAll
+  deleteAll,
+  deleteUserCart,
+  deleteProductCartUser
 };

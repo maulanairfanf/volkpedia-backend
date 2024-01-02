@@ -30,6 +30,10 @@ const createCart = async (req) => {
   }
   const price = product.price;
 
+  if (product.stock < quantity) {
+    throw new BadRequestError('Quantity More Than Stock Product')
+  }
+
   //If cart already exists for user,
   if (cart) {
     const productIndex = cart.products.findIndex((product) => product.productId ==  productId);
@@ -56,10 +60,33 @@ const createCart = async (req) => {
       products: [{ productId, quantity, price }],
       bill: quantity * price,
     });
-
   }
-  
-  return cart;
+
+  product.stock -= quantity
+  await product.save();
+  console.log('cart', cart)
+  return cart
+}
+
+const deleteProductCart = async (req) => {
+  const customer = req.customer.id;
+  const cart = await Cart.findOne({ customer: customer });
+  const product = await Product.findOne({ _id: req.params.id });
+
+  if (cart) {
+    const productIndex = cart.products.findIndex((product) => product.productId ==  req.params.id);
+    //check if product exists or not
+    if (productIndex > -1) {
+      product.stock += cart.products[productIndex].quantity
+      cart.products.splice(productIndex, 1)
+      cart.bill = cart.products.reduce((acc, curr) => {
+        return acc + curr.quantity * curr.price;
+      },0)
+      await cart.save();
+      await product.save();
+    }
+  }
+  return cart
 }
 
 const deleteAllCart = async (req) => {
@@ -68,9 +95,18 @@ const deleteAllCart = async (req) => {
   return result
 }
 
+const deleteOneByUser = async (req) => {
+  const customer = req.customer.id;
+  const result = Cart.deleteOne({customer: customer})
+
+  return result
+}
+
 
 module.exports = {
   getCart,
   createCart,
-  deleteAllCart
+  deleteAllCart,
+  deleteOneByUser,
+  deleteProductCart
 };

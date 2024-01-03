@@ -7,7 +7,18 @@ const getProductDetail = async (req) => {
 }
 
 const getProduct = async (req) => {
-  const result = await Product.find()
+  const { query, sortPrice } = req.query;
+  let condition = {}
+
+  if (query) {
+    condition = { ...condition, name: { $regex: query, $options: 'i' } };
+  }
+
+  // if (sortPrice) {
+  //   condition = { ...condition, category: category };
+  // }
+
+  const result = await Product.find(condition)
 
   return result
 }

@@ -38,5 +38,65 @@
     "location": "Lampung",
     "rating": 4.7,
     "selling": 15
+  },
+  {
+    "name": "Set Ocean Vibes",
+    "description": "Sofa wit more pillows, chair, table and lamps",
+    "price": 12000000,
+    "stock": 2,
+    "image": "https://images.unsplash.com/photo-1631679706909-1844bbd07221?q=80&w=1992&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Jakarta",
+    "rating": 4.6,
+    "selling": 8
+  },
+  {
+    "name": "Set Gray Sofa",
+    "description": "Gray sofa with 5 pillows and table",
+    "price": 9000000,
+    "stock": 3,
+    "image": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Bandung",
+    "rating": 4.8,
+    "selling": 7
+  },
+  {
+    "name": "Wall Display Wood",
+    "description": "Wall displays made of high quality wood",
+    "price": 4000000,
+    "stock": 8,
+    "image": "https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Lampung",
+    "rating": 4.9,
+    "selling": 12
+  },
+  {
+    "name": "Working Space Common",
+    "description": "Working space with chair, table and lamp",
+    "price": 7500000,
+    "stock": 20,
+    "image": "https://images.unsplash.com/photo-1613252036716-e1efc9788e5b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Bandung",
+    "rating": 5,
+    "selling": 10
+  },
+  {
+    "name": "Kitchen Set Common",
+    "description": "Kitchen set common vibes with wood and white paint",
+    "price": 15000000,
+    "stock": 12,
+    "image": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Jakarta",
+    "rating": 4.9,
+    "selling": 11
+  },
+  {
+    "name": "Set Living Room Basic",
+    "description": "Basic set living room with comfy coloring for every detail",
+    "price": 23000000,
+    "stock": 15,
+    "image": "https://images.unsplash.com/photo-1600121848594-d8644e57abab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "location": "Jakarta",
+    "rating": 4.8,
+    "selling": 3
   }
 ]

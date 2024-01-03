@@ -7,7 +7,6 @@ const getProductDetail = async (req) => {
 }
 
 const getProduct = async (req) => {
-  console.log('req.query', req.query)
   const { query, sortPrice, limit = 10, page = 1 } = req.query;
   let condition = {}
 

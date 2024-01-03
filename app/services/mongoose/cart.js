@@ -10,12 +10,20 @@ const {
 
 
 const getCart = async (req) => {
-  const customer = await Cart.findOne({ customer: req.customer.id })
+  const cart = await Cart.findOne({ customer: req.customer.id })
   .populate({
     path: "products.productId", select: '_id name description image price location'
   })
 
-  return customer
+  const results = cart.products
+  const temp =  results.filter((item) => item.productId != null)
+  cart.products = temp
+  cart.bill = cart.products.reduce((acc, curr) => {
+    return acc + curr.quantity * curr.price;
+  },0)
+  
+  cart.save()
+  return cart
 };
 
 

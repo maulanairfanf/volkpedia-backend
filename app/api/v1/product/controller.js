@@ -3,7 +3,8 @@ const {
   getProductDetail,
   createProduct,
   deleteOneProduct,
-  updateProduct
+  updateProduct,
+  deleteAllProduct
 } = require('../../../services/mongoose/product');
 
 const { StatusCodes } = require('http-status-codes');
@@ -57,6 +58,18 @@ const deleteOne = async (req, res, next) => {
   }
 };
 
+const deleteAll = async (req, res, next) => {
+  try {
+    const result = await deleteAllProduct(req);
+
+    res.status(StatusCodes.OK).json({
+      data: result,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 const update = async (req, res, next) => {
   try {
     const result = await updateProduct(req);
@@ -74,5 +87,6 @@ module.exports = {
   find,
   create,
   deleteOne,
-  update
+  update,
+  deleteAll
 };

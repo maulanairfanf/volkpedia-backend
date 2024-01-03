@@ -24,6 +24,12 @@ const deleteOneProduct = async (req) => {
   return result
 }
 
+const deleteAllProduct = async (req) => {
+  const result = await Product.deleteMany({})
+
+  return result
+}
+
 const updateProduct = async (req) => {
   const result = await Product.updateOne({_id: req.params.id}, (req.body))
 
@@ -35,5 +41,6 @@ module.exports = {
   getProductDetail,
   createProduct,
   deleteOneProduct,
-  updateProduct
+  updateProduct,
+  deleteAllProduct
 };

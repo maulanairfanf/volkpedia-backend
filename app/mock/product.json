@@ -5,7 +5,9 @@
     "price": 6000000,
     "stock": 10,
     "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Lampung"
+    "location": "Lampung",
+    "rating": 5,
+    "selling": 10
   },
   {
     "name": "Set Mini Living Room",
@@ -13,7 +15,9 @@
     "price": 10000000,
     "stock": 10,
     "image": "https://plus.unsplash.com/premium_photo-1678402545077-7a9ec2b5e5b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Bandung"
+    "location": "Bandung",
+    "rating": 4.9,
+    "selling": 9
   },
   {
     "name": "Set Aesthetic With Yellow Chair",
@@ -21,7 +25,9 @@
     "price": 7000000,
     "stock": 10,
     "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=2158&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Jakarta"
+    "location": "Jakarta",
+    "rating": 4.5,
+    "selling": 13
   },
   {
     "name": "White Chair Classic",
@@ -29,6 +35,8 @@
     "price": 3000000,
     "stock": 10,
     "image": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    "location": "Lampung"
+    "location": "Lampung",
+    "rating": 4.7,
+    "selling": 15
   }
 ]

@@ -24,6 +24,14 @@ const productSchema = new mongoose.Schema(
       type: String,
       default: ''
     },
+    rating: {
+      type: Number,
+      default: 0,
+    },
+    selling: {
+      type: Number,
+      default: 0,
+    },
     location: {
       type: String,
       enum: ["Jakarta", "Bandung", "Lampung"]

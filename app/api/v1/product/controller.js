@@ -13,9 +13,7 @@ const index = async (req, res, next) => {
   try {
     const result = await getProduct(req);
 
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
+    res.status(StatusCodes.OK).json(result);
   } catch (err) {
     next(err);
   }

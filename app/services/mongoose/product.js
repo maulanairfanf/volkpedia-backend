@@ -7,7 +7,8 @@ const getProductDetail = async (req) => {
 }
 
 const getProduct = async (req) => {
-  const { query, sortPrice } = req.query;
+  console.log('req.query', req.query)
+  const { query, sortPrice, limit = 10, page = 1 } = req.query;
   let condition = {}
 
   if (query) {
@@ -19,8 +20,12 @@ const getProduct = async (req) => {
   // }
 
   const result = await Product.find(condition)
+  .limit(limit)
+  .skip(limit * (page - 1));
 
-  return result
+  const count = await Product.countDocuments(condition);
+
+  return { data: result, pages: Math.ceil(count / limit), total: count }
 }
 
 const createProduct = async (req) => {

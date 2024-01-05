@@ -15,14 +15,17 @@ const getCart = async (req) => {
     path: "products.productId", select: '_id name description image price location'
   })
 
-  const results = cart.products
-  const temp =  results.filter((item) => item.productId != null)
-  cart.products = temp
-  cart.bill = cart.products.reduce((acc, curr) => {
-    return acc + curr.quantity * curr.price;
-  },0)
-  
-  cart.save()
+  if (cart) {
+    const results = cart.products
+    const temp =  results.filter((item) => item.productId != null)
+    cart.products = temp
+    cart.bill = cart.products.reduce((acc, curr) => {
+      return acc + curr.quantity * curr.price;
+    },0)
+    cart.save()
+  } else {
+    return []
+  }
   return cart
 };
 

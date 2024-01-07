@@ -99,14 +99,11 @@ const getProfileCustomer = async (req) => {
   return result
 }
 
-// const getAllEvents = async (req) => {
-//   const result = await Events.find({ statusEvent: 'Published' })
-//     .populate('category')
-//     .populate('image')
-//     .select('_id title date tickets venueName');
+const getAllCustomer = async (req) => {
+  const result = await Customer.find().select('_id fullName email createdAt updatedAt')
 
-//   return result;
-// };
+  return result;
+};
 
 // const getOneEvent = async (req) => {
 //   const { id } = req.params;
@@ -208,7 +205,8 @@ module.exports = {
   signupCustomer,
   activateCustomer,
   signinCustomer,
-  getProfileCustomer
+  getProfileCustomer,
+  getAllCustomer
   // getAllEvents,
   // getOneEvent,
   // getAllOrders,

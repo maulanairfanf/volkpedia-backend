@@ -13,13 +13,13 @@ const {
   // getAllPayment,
 } = require('./controller');
 
-const { authenticateCustomer, authenticateUser } = require('../../../middlewares/auth');
+const { authenticateCustomer, authenticateUser, authorizeRoles } = require('../../../middlewares/auth');
 
 router.post('/auth/signup', signup);
 router.post('/auth/signin', signin);
 router.put('/auth/active', activeCustomer);
 router.get('/me', authenticateCustomer, getProfile);
-router.get('/customer', authenticateUser, getCustomer);
+router.get('/customer', authenticateUser, authorizeRoles('admin'), getCustomer);
 
 // router.get('/events', getAllLandingPage);
 // router.get('/events/:id', getDetailLandingPage);

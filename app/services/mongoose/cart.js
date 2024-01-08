@@ -29,6 +29,26 @@ const getCart = async (req) => {
   return cart
 };
 
+const getAllCart = async (req) => {
+  const cart = await Cart.find()
+  .populate({
+    path: "products.productId", select: '_id name description image price location'
+  })
+
+  // if (cart) {
+  //   const results = cart.products
+  //   const temp =  results.filter((item) => item.productId != null)
+  //   cart.products = temp
+  //   cart.bill = cart.products.reduce((acc, curr) => {
+  //     return acc + curr.quantity * curr.price;
+  //   },0)
+  //   cart.save()
+  // } else {
+  //   return []
+  // }
+  return cart
+};
+
 
 const createCart = async (req) => {
   const { productId, quantity } = req.body;
@@ -119,5 +139,6 @@ module.exports = {
   createCart,
   deleteAllCart,
   deleteOneByUser,
-  deleteProductCart
+  deleteProductCart,
+  getAllCart
 };

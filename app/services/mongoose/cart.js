@@ -30,23 +30,28 @@ const getCart = async (req) => {
 };
 
 const getAllCart = async (req) => {
-  const cart = await Cart.find()
+  const { query, sortPrice, limit = 10, page = 1 } = req.query;
+  
+  let condition = {}
+
+  if (query) {
+    condition = { ...condition, fullName: { $regex: query, $options: 'i' } };
+  }
+  const result = await Cart.find()
   .populate({
     path: "products.productId", select: '_id name description image price location'
   })
+  .populate({
+    path: "customer", select: '_id fullName', match: condition
+  })
+  .limit(limit)
+  .skip(limit * (page - 1))
+  .sort({createdAt: -1})
 
-  // if (cart) {
-  //   const results = cart.products
-  //   const temp =  results.filter((item) => item.productId != null)
-  //   cart.products = temp
-  //   cart.bill = cart.products.reduce((acc, curr) => {
-  //     return acc + curr.quantity * curr.price;
-  //   },0)
-  //   cart.save()
-  // } else {
-  //   return []
-  // }
-  return cart
+  const filtering = result.filter(item => item.customer)
+  const count = filtering.length
+
+  return { data: filtering, pages: Math.ceil(count / limit), total: count }
 };
 
 

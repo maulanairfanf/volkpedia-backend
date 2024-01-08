@@ -12,6 +12,7 @@ const authCMSRouter = require('./app/api/v1/auth/router');
 const customerRouter = require('./app/api/v1/customer/router');
 const productRouter = require('./app/api/v1/product/router');
 const cartRouter = require('./app/api/v1/cart/router');
+const dashboardRouter = require('./app/api/v1/dashboard/router');
 
 
 const v1 = '/api/v1';
@@ -36,6 +37,7 @@ app.use(`${v1}/cms`, authCMSRouter);
 app.use(`${v1}`, customerRouter);
 app.use(`${v1}`, productRouter);
 app.use(`${v1}`, cartRouter);
+app.use(`${v1}/cms`, dashboardRouter);
 
 
 

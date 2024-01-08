@@ -101,9 +101,7 @@ const getAll = async (req, res, next) => {
   try {
     const result = await getAllCart(req);
 
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
+    res.status(StatusCodes.OK).json(result);
   } catch (err) {
     next(err);
   }

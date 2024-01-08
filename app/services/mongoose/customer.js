@@ -92,6 +92,7 @@ const signinCustomer = async (req) => {
 };
 
 const getProfileCustomer = async (req) => {
+  console.log('req.custeomer.id', req.customer.id)
   const result = await Customer.findOne({ _id: req.customer.id })
   delete result._doc.password;
   delete result._doc.otp;
@@ -100,7 +101,42 @@ const getProfileCustomer = async (req) => {
 }
 
 const getAllCustomer = async (req) => {
-  const result = await Customer.find().select('_id fullName email createdAt updatedAt')
+  const { query, limit = 10, page = 1 } = req.query;
+  let condition = {}
+
+  if (query) {
+    condition = { ...condition, fullName: { $regex: query, $options: 'i' } };
+  }
+
+  const result = await Customer.find(condition)
+  .limit(limit)
+  .skip(limit * (page - 1))
+  .select('_id fullName email status otp createdAt updatedAt')
+  .sort({createdAt: -1})
+
+  const count = await Customer.countDocuments(condition);
+
+
+  return { data: result, pages: Math.ceil(count / limit), total: count }
+};
+
+const updateStatusCustomer = async (req) => {
+  const { status } = req.body;
+  const check = Customer.findOne({_id: req.params.id})
+  if (!['aktif', 'tidak aktif'].includes(status)) {
+    throw new BadRequestError('Status mus be aktif atau tidak aktif');
+  }
+  if (!check) throw new NotFoundError('Not Found')
+
+  const result = await Customer.findByIdAndUpdate(
+    req.params.id,
+    {
+      status: status,
+    },
+    { new: true }
+  )
+
+  delete result._doc.password;
 
   return result;
 };
@@ -206,7 +242,8 @@ module.exports = {
   activateCustomer,
   signinCustomer,
   getProfileCustomer,
-  getAllCustomer
+  getAllCustomer,
+  updateStatusCustomer
   // getAllEvents,
   // getOneEvent,
   // getAllOrders,

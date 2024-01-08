@@ -1,14 +1,15 @@
 const {
+  // getAllEvents,
+  // getOneEvent,
+  // getAllOrders,
+  // checkoutOrder,
+  // getAllPaymentByOrganizer,
   signupCustomer,
   activateCustomer,
   signinCustomer,
-  getAllEvents,
-  getOneEvent,
-  getAllOrders,
-  checkoutOrder,
-  getAllPaymentByOrganizer,
   getProfileCustomer,
-  getAllCustomer
+  getAllCustomer,
+  updateStatusCustomer
 } = require('../../../services/mongoose/customer');
 
 const { StatusCodes } = require('http-status-codes');
@@ -61,86 +62,95 @@ const getProfile = async (req, res, next) => {
   }
 };
 
-
-
-const getAllLandingPage = async (req, res, next) => {
-  try {
-    const result = await getAllEvents(req);
-
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getDashboard = async (req, res, next) => {
-  try {
-    const result = await getAllOrders(req);
-
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getDetailLandingPage = async (req, res, next) => {
-  try {
-    const result = await getOneEvent(req);
-
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const getAllPayment = async (req, res, next) => {
-  try {
-    const result = await getAllPaymentByOrganizer(req);
-
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-const checkout = async (req, res, next) => {
-  try {
-    const result = await checkoutOrder(req);
-
-    res.status(StatusCodes.CREATED).json({
-      data: result,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
 const getCustomer = async (req, res,next) => {
   try {
     const result = await getAllCustomer(req);
 
-    res.status(StatusCodes.OK).json({
-      data: result,
-    });
+    res.status(StatusCodes.OK).json(result);
   } catch (err) {
     next(err);
   }
 }
+
+const updateStatus = async (req, res,next) => {
+  try {
+    const result = await updateStatusCustomer(req);
+
+    res.status(StatusCodes.OK).json(result);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// const getAllLandingPage = async (req, res, next) => {
+//   try {
+//     const result = await getAllEvents(req);
+
+//     res.status(StatusCodes.OK).json({
+//       data: result,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// const getDashboard = async (req, res, next) => {
+//   try {
+//     const result = await getAllOrders(req);
+
+//     res.status(StatusCodes.OK).json({
+//       data: result,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// const getDetailLandingPage = async (req, res, next) => {
+//   try {
+//     const result = await getOneEvent(req);
+
+//     res.status(StatusCodes.OK).json({
+//       data: result,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// const getAllPayment = async (req, res, next) => {
+//   try {
+//     const result = await getAllPaymentByOrganizer(req);
+
+//     res.status(StatusCodes.OK).json({
+//       data: result,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+// const checkout = async (req, res, next) => {
+//   try {
+//     const result = await checkoutOrder(req);
+
+//     res.status(StatusCodes.CREATED).json({
+//       data: result,
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+
+
 
 module.exports = {
   signup,
   activeCustomer,
   signin,
   getProfile,
-  getCustomer
+  getCustomer,
+  updateStatus
   // getAllLandingPage,
   // getDetailLandingPage,
   // getDashboard,

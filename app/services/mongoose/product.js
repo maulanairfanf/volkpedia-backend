@@ -20,7 +20,8 @@ const getProduct = async (req) => {
 
   const result = await Product.find(condition)
   .limit(limit)
-  .skip(limit * (page - 1));
+  .skip(limit * (page - 1))
+  .sort({createdAt: -1})
 
   const count = await Product.countDocuments(condition);
 

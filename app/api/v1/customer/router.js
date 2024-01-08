@@ -5,7 +5,8 @@ const {
   activeCustomer,
   signin,
   getProfile,
-  getCustomer
+  getCustomer,
+  updateStatus
   // getAllLandingPage,
   // getDetailLandingPage,
   // getDashboard,
@@ -20,6 +21,7 @@ router.post('/auth/signin', signin);
 router.put('/auth/active', activeCustomer);
 router.get('/me', authenticateCustomer, getProfile);
 router.get('/customer', authenticateUser, authorizeRoles('admin'), getCustomer);
+router.put('/status/:id', authenticateUser, authorizeRoles('admin'), updateStatus);
 
 // router.get('/events', getAllLandingPage);
 // router.get('/events/:id', getDetailLandingPage);

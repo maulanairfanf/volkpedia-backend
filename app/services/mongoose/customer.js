@@ -1,4 +1,5 @@
 const Customer = require('../../api/v1/customer/model');
+const Cart = require('../../api/v1/cart/model');
 
 const {
   BadRequestError,
@@ -92,10 +93,19 @@ const signinCustomer = async (req) => {
 };
 
 const getProfileCustomer = async (req) => {
-  console.log('req.custeomer.id', req.customer.id)
-  const result = await Customer.findOne({ _id: req.customer.id })
-  delete result._doc.password;
-  delete result._doc.otp;
+  const customer = await Customer.findOne({ _id: req.customer.id })
+  const countCart = await Cart.findOne({ customer: req.customer.id })
+  delete customer._doc.password;
+  delete customer._doc.otp;
+
+  const resultCart = {
+    countCart: countCart.products.length
+  }
+
+  const result= {
+      ...customer._doc,
+      ...resultCart
+  };
 
   return result
 }

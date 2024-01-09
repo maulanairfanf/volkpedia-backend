@@ -55,7 +55,7 @@ const getProfile = async (req, res, next) => {
     const result = await getProfileCustomer(req);
 
     res.status(StatusCodes.OK).json({
-      data: { data: result },
+      data: { ...result },
     });
   } catch (err) {
     next(err);

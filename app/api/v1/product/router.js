@@ -9,14 +9,16 @@ const {
   deleteAll
 } = require('./controller');
 
-const { authenticateUser, authorizeRoles } = require('../../../middlewares/auth');
+const {  authenticateCustomer, authenticateUser, authorizeRoles } = require('../../../middlewares/auth');
 
 
-router.get('/product', index);
-router.get('/product/:id', find);
-router.post('/product', authenticateUser, authorizeRoles('admin'), create);
-router.delete('/product',  authenticateUser, authorizeRoles('admin'), deleteAll);
-router.delete('/product/:id',  authenticateUser, authorizeRoles('admin'), deleteOne);
-router.put('/product/:id',  authenticateUser, authorizeRoles('admin'), update);
+router.get('/product',authenticateCustomer, index);
+router.get('/product/:id',authenticateCustomer, find);
+router.get('/cms/product', authenticateUser, authorizeRoles('admin'), index);
+router.get('/cms/product/:id', authenticateUser, authorizeRoles('admin'), find);
+router.post('/cms/product', authenticateUser, authorizeRoles('admin'), create);
+router.delete('/cms/product',  authenticateUser, authorizeRoles('admin'), deleteAll);
+router.delete('/cms/product/:id',  authenticateUser, authorizeRoles('admin'), deleteOne);
+router.put('/cms/product/:id',  authenticateUser, authorizeRoles('admin'), update);
 
 module.exports = router;

@@ -1,6 +1,5 @@
 const Customer = require('../../api/v1/customer/model');
 const Cart = require('../../api/v1/cart/model');
-
 const {
   BadRequestError,
   NotFoundError,
@@ -12,6 +11,13 @@ const { otpMail, invoiceMail } = require('../mail');
 
 const signupCustomer = async (req) => {
   const { fullName, email, password } = req.body;
+
+  const isActive = await Customer.findOne({
+    email,
+    status: 'aktif',
+  });
+
+  if (isActive) throw new BadRequestError('Already registered'); 
 
   // jika email dan status tidak aktif
   let result = await Customer.findOne({
@@ -98,13 +104,16 @@ const getProfileCustomer = async (req) => {
   delete customer._doc.password;
   delete customer._doc.otp;
 
-  const resultCart = {
-    countCart: countCart.products.length
+  let resultCart = {}
+  if (countCart) {
+    resultCart = {
+      countCart: countCart.products.length
+    }
   }
 
   const result= {
-      ...customer._doc,
-      ...resultCart
+    ...customer._doc,
+    ...resultCart
   };
 
   return result
@@ -151,102 +160,6 @@ const updateStatusCustomer = async (req) => {
   return result;
 };
 
-// const getOneEvent = async (req) => {
-//   const { id } = req.params;
-//   const result = await Events.findOne({ _id: id })
-//     .populate('category')
-//     .populate({ path: 'talent', populate: 'image' })
-//     .populate('image');
-
-//   if (!result) throw new NotFoundError(`Tidak ada acara dengan id :  ${id}`);
-
-//   return result;
-// };
-
-// const getAllOrders = async (req) => {
-//   console.log(req.customer);
-//   const result = await Orders.find({ customer: req.customer.id });
-//   return result;
-// };
-
-/**
- * Tugas Send email invoice
- * TODO: Ambil data email dari personal detail
- *  */
-// const checkoutOrder = async (req) => {
-//   const { event, personalDetail, payment, tickets } = req.body;
-
-//   const checkingEvent = await Events.findOne({ _id: event });
-//   if (!checkingEvent) {
-//     throw new NotFoundError('Tidak ada acara dengan id : ' + event);
-//   }
-
-//   const checkingPayment = await Payments.findOne({ _id: payment });
-
-//   if (!checkingPayment) {
-//     throw new NotFoundError(
-//       'Tidak ada metode pembayaran dengan id :' + payment
-//     );
-//   }
-
-//   let totalPay = 0,
-//     totalOrderTicket = 0;
-//   await tickets.forEach((tic) => {
-//     checkingEvent.tickets.forEach((ticket) => {
-//       if (tic.ticketCategories.type === ticket.type) {
-//         if (tic.sumTicket > ticket.stock) {
-//           throw new NotFoundError('Stock event tidak mencukupi');
-//         } else {
-//           ticket.stock -= tic.sumTicket;
-
-//           totalOrderTicket += tic.sumTicket;
-//           totalPay += tic.ticketCategories.price * tic.sumTicket;
-//         }
-//       }
-//     });
-//   });
-
-//   await checkingEvent.save();
-
-//   const historyEvent = {
-//     title: checkingEvent.title,
-//     date: checkingEvent.date,
-//     about: checkingEvent.about,
-//     tagline: checkingEvent.tagline,
-//     keyPoint: checkingEvent.keyPoint,
-//     venueName: checkingEvent.venueName,
-//     tickets: tickets,
-//     image: checkingEvent.image,
-//     category: checkingEvent.category,
-//     talent: checkingEvent.talent,
-//     organizer: checkingEvent.organizer,
-//   };
-
-//   const result = new Orders({
-//     date: new Date(),
-//     personalDetail: personalDetail,
-//     totalPay,
-//     totalOrderTicket,
-//     orderItems: tickets,
-//     customer: req.customer.id,
-//     event,
-//     historyEvent,
-//     payment,
-//   });
-
-//   await result.save();
-//   await invoiceMail(personalDetail.email, result)
-//   return result;
-// };
-
-// const getAllPaymentByOrganizer = async (req) => {
-//   const { organizer } = req.params;
-
-//   const result = await Payments.find({ organizer: organizer });
-
-//   return result;
-// };
-
 module.exports = {
   signupCustomer,
   activateCustomer,
@@ -254,9 +167,4 @@ module.exports = {
   getProfileCustomer,
   getAllCustomer,
   updateStatusCustomer
-  // getAllEvents,
-  // getOneEvent,
-  // getAllOrders,
-  // checkoutOrder,
-  // getAllPaymentByOrganizer,
 };

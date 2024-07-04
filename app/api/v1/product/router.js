@@ -7,7 +7,6 @@ const {
 	deleteOne,
 	update,
 	deleteAll,
-	indexCoba,
 } = require('./controller')
 
 const {
@@ -16,8 +15,7 @@ const {
 	authorizeRoles,
 } = require('../../../middlewares/auth')
 
-router.get('/product', index)
-router.get('/product/coba', indexCoba)
+router.get('/product', authenticateCustomer, index)
 router.get('/product/:id', authenticateCustomer, find)
 router.get('/cms/product', authenticateUser, authorizeRoles('admin'), index)
 router.get('/cms/product/:id', authenticateUser, authorizeRoles('admin'), find)

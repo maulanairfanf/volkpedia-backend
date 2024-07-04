@@ -4,49 +4,9 @@
 		{
 			"src": "api/index.js",
 			"use": "@vercel/node"
-		},
-		{
-			"src": "app/api/v1/auth/router.js",
-			"use": "@vercel/node"
-		},
-		{
-			"src": "app/api/v1/customer/router.js",
-			"use": "@vercel/node"
-		},
-		{
-			"src": "app/api/v1/product/router.js",
-			"use": "@vercel/node"
-		},
-		{
-			"src": "app/api/v1/cart/router.js",
-			"use": "@vercel/node"
-		},
-		{
-			"src": "app/api/v1/dashboard/router.js",
-			"use": "@vercel/node"
 		}
 	],
 	"routes": [
-		{
-			"src": "/api/v1/cms/(.*)",
-			"dest": "/app/api/v1/auth/router.js"
-		},
-		{
-			"src": "/api/v1/customers/(.*)",
-			"dest": "/app/api/v1/customer/router.js"
-		},
-		{
-			"src": "/api/v1/products/(.*)",
-			"dest": "/app/api/v1/product/router.js"
-		},
-		{
-			"src": "/api/v1/cart/(.*)",
-			"dest": "/app/api/v1/cart/router.js"
-		},
-		{
-			"src": "/api/v1/cms/dashboard/(.*)",
-			"dest": "/app/api/v1/dashboard/router.js"
-		},
 		{
 			"src": "/(.*)",
 			"dest": "/api/index.js"

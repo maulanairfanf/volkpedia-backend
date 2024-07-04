@@ -1,3 +1,9 @@
-[[functions]]
-  path = "api"
-  runtime = "nodejs14.x"
+[build]
+  command = "npm run build"  # Sesuaikan dengan perintah build Anda jika diperlukan
+  functions = "functions"    # Direktori tempat fungsi Netlify Anda disimpan
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"

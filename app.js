@@ -3,7 +3,6 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
-const serverless = require('serverless-http')
 
 const app = express()
 const v1 = '/api/v1'
@@ -39,4 +38,4 @@ app.use(`${v1}/cms`, dashboardRouter)
 app.use(notFoundMiddleware)
 app.use(handleErrorMiddleware)
 
-module.exports.handler = serverless(app)
+module.exports = app

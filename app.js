@@ -3,9 +3,11 @@ const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
 const cors = require('cors')
+const connectDB = require('./app/db/index')
 
 const app = express()
 const v1 = '/api/v1'
+connectDB()
 
 const authCMSRouter = require('./app/api/v1/auth/router')
 const customerRouter = require('./app/api/v1/customer/router')

@@ -45,10 +45,9 @@ db.once('open', () => {
 		)
 
 		// Close the connection after seeding
-		mongoose.connection.close(() => {
-			console.log('Database seeding complete. Connection closed.')
-			process.exit(0)
-		})
+		await mongoose.connection.close()
+		console.log('Database seeding complete. Connection closed.')
+		process.exit(0)
 	}
 
 	seedDatabase()

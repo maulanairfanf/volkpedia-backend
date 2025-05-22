@@ -5,70 +5,45 @@
 		"password": "$2a$12$GR2jvQj.tVGMoqyHYjTudugU.4G1Ns6jKAS9onskUNcJigi.3Sf5a",
 		"status": "aktif",
 		"otp": "9850",
-		"createdAt": {
-			"$date": "2024-01-08T03:58:48.902Z"
-		},
-		"updatedAt": {
-			"$date": "2024-01-08T04:09:26.705Z"
-		},
 		"__v": 0
 	},
 	{
 		"fullName": "Ella Harris",
 		"email": "ella.harris@example.com",
 		"password": "harrisPass",
-		"createdAt": "2024-01-08T03:51:33.611Z",
-		"updatedAt": {
-			"$date": "2024-01-08T04:34:46.65Z"
-		},
 		"status": "tidak aktif"
 	},
 	{
 		"fullName": "John Doe",
 		"email": "john.doe@example.com",
 		"password": "password123",
-		"createdAt": "2024-01-08T03:51:33.611Z",
-		"updatedAt": {
-			"$date": "2024-01-08T04:34:57.058Z"
-		},
+
 		"status": "aktif"
 	},
 	{
 		"fullName": "Alice Smith",
 		"email": "alice.smith@example.com",
-		"password": "securePass456",
-		"createdAt": "2024-01-08T04:15:22.123Z",
-		"updatedAt": "2024-01-08T04:15:22.123Z"
+		"password": "securePass456"
 	},
 	{
 		"fullName": "Bob Johnson",
 		"email": "bob.johnson@example.com",
-		"password": "strongP@ssword",
-		"createdAt": "2024-01-08T05:20:45.789Z",
-		"updatedAt": "2024-01-08T05:20:45.789Z"
+		"password": "strongP@ssword"
 	},
 	{
 		"fullName": "Emily White",
 		"email": "emily.white@example.com",
-		"password": "saf3tyPass",
-		"createdAt": "2024-01-08T06:30:12.456Z",
-		"updatedAt": "2024-01-08T06:30:12.456Z"
+		"password": "saf3tyPass"
 	},
 	{
 		"fullName": "David Brown",
 		"email": "david.brown@example.com",
-		"password": "brownie789",
-		"createdAt": "2024-01-08T07:42:54.321Z",
-		"updatedAt": "2024-01-08T07:42:54.321Z"
+		"password": "brownie789"
 	},
 	{
 		"fullName": "Grace Miller",
 		"email": "grace.miller@example.com",
 		"password": "millerPass",
-		"createdAt": "2024-01-08T08:55:37.987Z",
-		"updatedAt": {
-			"$date": "2024-01-08T04:34:39.683Z"
-		},
 		"status": "tidak aktif"
 	},
 	{
@@ -77,12 +52,6 @@
 		"password": "$2a$12$f1Mzjvv7ofzKvQKcAo2Ot.SSUkB.bjIwKheyOApwG5KRHHJ/Td0Ca",
 		"status": "aktif",
 		"otp": "8604",
-		"createdAt": {
-			"$date": "2024-01-08T04:49:30.444Z"
-		},
-		"updatedAt": {
-			"$date": "2024-01-08T04:49:59.531Z"
-		},
 		"__v": 0
 	},
 	{
@@ -91,12 +60,6 @@
 		"password": "$2a$12$Dc.LozIPLTGMwD87Bad9HOYRzu6EDFKGLGBWgbuyL/qOVoBvQ4DA2",
 		"status": "aktif",
 		"otp": "8995",
-		"createdAt": {
-			"$date": "2024-01-17T11:58:46.171Z"
-		},
-		"updatedAt": {
-			"$date": "2024-01-17T11:59:41.048Z"
-		},
 		"__v": 0
 	},
 	{
@@ -105,12 +68,6 @@
 		"password": "$2a$12$VLOzUl4wQFGGj/3Hnpej3e1kd44QUrw/oi.6LYm9YsSgsxkO3AGYK",
 		"status": "aktif",
 		"otp": "1112",
-		"createdAt": {
-			"$date": "2024-01-29T04:56:09.597Z"
-		},
-		"updatedAt": {
-			"$date": "2024-01-29T05:01:25.825Z"
-		},
 		"__v": 0
 	}
 ]
